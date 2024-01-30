@@ -10,9 +10,9 @@ import time
 # Set variables 
 # They uses only in send_request function and placed here for easier setup
 # Don't forget to paste your MTS EXolve API token, arended phone, and message id bellow
-token = 'Type your API token here' 
-arended_phone = "700000000000"
-message_id="78987f5b-c281-4d23-be2b-fb7a0402126d"
+token = "Type your API token here"
+arended_phone = "Type here arended MTS Exolve phone"
+message_id="Type here voice message ID"
 # change this vars if API path will changed
 base_url = "https://api.exolve.ru"
 urls={
@@ -55,16 +55,12 @@ def send_request(type,body):
     result="";
     if type in urls:
         url = urls[type]
-        print(url)
         payload = json.dumps(body)
         response = requests.request("POST", url, headers=headers, data=payload)
-        print(response)
         result = response.json()
     else:
         print("Unknown request type")
     return result
-
-
 
 def send_voice_messages(guests_list):
     """
@@ -95,9 +91,9 @@ def check_listened(success_voice_list):
     need_sms_list = [];
     for voice in success_voice_list:
         body = {
-            "call_id": f"{success_voice[1]}"
+            "call_id": f"{voice[1]}"
         }
-        result= send_request("voice",body)
+        result= send_request("send_voice",body)
         if ( "status" in result): 
             if  send_request["status"]=="completed":
                 listen_list.append(voice[0])
@@ -115,7 +111,7 @@ def send_sms(guests_list, need_sms_list):
     error_sms_list = [];
     for guest in guests_list:
         for id in need_sms_list:
-            if guest[0] == id:
+            if int(guest[0]) == int(id):
                 body = {
                     "number": f"{arended_phone}",
                     "destination": f"{guest[2]}",
@@ -123,7 +119,7 @@ def send_sms(guests_list, need_sms_list):
                 }
                 result= send_request("send_sms",body)
                 if ( "message_id" in result):
-                    success_sms_list.append([guest[0],result["call_id"]])
+                    success_sms_list.append(guest)
                 else:
                     error_sms_list.append(guest)
                 break
@@ -135,11 +131,18 @@ if __name__ == '__main__':
     parser.add_argument('--inpath', type=str, required=False, default='guest_list.csv')    
     print ("start")
     args = parser.parse_args()
+    # read csv
     guests_list= read_csv(args.inpath)
+    # send voice
     success_voice_list,error_voice_list=send_voice_messages(guests_list)
-    time.sleep(10)    # Pause 5.5 seconds
+    # Pause 10 seconds
+    time.sleep(30)    
+    # Checking who listened voice message
     listen_list, need_sms_list = check_listened (success_voice_list)
+    # send SMS for guests whom not listened voice message
     success_sms_list, error_sms_list = send_sms(guests_list, need_sms_list)
-  #  print(f"I have {guests_list}")
+    # print results
+    print (f"Всего приглашено {(len(success_sms_list)+len(listen_list))} гостей")
+    print (f"Не смогли пригласить:", [*error_voice_list, *error_sms_list] )
 
 
