@@ -61,7 +61,6 @@ class SendSMS extends \Opencart\System\Engine\Controller {
       $data['module_opc_send_sms_text'] = $this->config->get('module_opc_send_sms_text');
 
 
-
       $data['header'] = $this->load->controller('common/header');
       $data['column_left'] = $this->load->controller('common/column_left');
       $data['footer'] = $this->load->controller('common/footer');
@@ -121,10 +120,18 @@ class SendSMS extends \Opencart\System\Engine\Controller {
    * @return void
    */
    protected function __registerEvents() {
+
+      // check_event
+   $this->load->model('setting/event');
+   if ($this->model_setting_event->getEventByCode('SendCheckoutSmsMtsExolve')) {
+      // The event exists, delete older version.
+      $this->model_setting_event->deleteEventByCode('SendCheckoutSmsMtsExolve');
+   }
+
       // events array
      $events   = array();
      $events[] = array(
-       'code'        => "SendCheckoutSmsMtsExolve_",
+       'code'        => "SendCheckoutSmsMtsExolve",
        'trigger'     => "catalog/model/checkout/order/addHistory/before",
        'action'      => "extension/opc_send_sms/event/event",
        'description' => "Send SMS after checkout via MTS Exolve",

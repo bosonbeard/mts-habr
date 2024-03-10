@@ -9,13 +9,12 @@ $_['text_edit']        = 'Edit Show Menu Module';
 
 // Entry
 $_['entry_status']     = 'Status';
-$_['entry_api_token']               = 'MTS Exolve API Key';
-$_['entry_api_phone']               = 'MTS Exolve sender phone';
-$_['entry_text']               = 'SMS text template';
-
+$_['entry_api_token']  = 'MTS Exolve API Key';
+$_['entry_api_phone']  = 'MTS Exolve sender phone';
+$_['entry_text']       = 'SMS text template';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify this module!';
-$_['error_api_token']               = 'MTS Exolve API Key Required';
-$_['error_api_phone']               = 'MTS Exolve sender phone Required';
+$_['error_api_token']  = 'MTS Exolve API Key Required';
+$_['error_api_phone']  = 'MTS Exolve sender phone Required';
 

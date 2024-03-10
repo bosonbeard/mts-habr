@@ -19,6 +19,8 @@ class Event extends \Opencart\System\Engine\Controller
      */
     public function index(&$route = false, &$data = array(), &$output = array()): void {
 
+        // get data from OpenCart
+
         $order_id = "none";
         $this->load->model('setting/setting');
 
@@ -27,8 +29,11 @@ class Event extends \Opencart\System\Engine\Controller
                     $order_id = $this->session->data['order_id'];
             }
         
+         // get data from OpenCart
+        $customer_phone = $this->customer->getTelephone(); 
+ 
+        // get data from extension opc_send_sms 
         $sender_phone =  $this->config->get('module_opc_send_sms_phone');
-        $customer_phone = $this->customer->getTelephone();
         $token =  $this->config->get('module_opc_send_sms_token');
         $text_raw =  $this->config->get('module_opc_send_sms_text');
         
@@ -38,7 +43,7 @@ class Event extends \Opencart\System\Engine\Controller
         }    
         $text = str_replace('%order_id%',$order_id,$text_raw);
 
-        
+        // send request to MTS Exolve API
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -59,14 +64,10 @@ class Event extends \Opencart\System\Engine\Controller
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
             "Authorization: Bearer $token"
-        ),
+            ),
         ));
-
         $response = curl_exec($curl);
-       //echo $sender_phone." ".$customer_phone." ".$response;
         curl_close($curl);
-        
-        
         
     }
 
