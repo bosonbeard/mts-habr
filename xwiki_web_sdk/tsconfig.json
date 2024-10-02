@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "dist",
+    "sourceMap": true, 
+    "moduleResolution": "node",
+    "esModuleInterop": true, 
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src" 
+  ]
+}

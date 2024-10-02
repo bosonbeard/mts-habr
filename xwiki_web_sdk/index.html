@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Voice SDK Example</title>
+
+    <script src="https://requirejs.org/docs/release/2.3.7/minified/require.js"></script>
+  </head>
+  <body>
+    <script>
+      // Используем WebVoiceSdk.createSipInstance
+
+      requirejs(["dist/bundle"], function () {
+        //This function is called when dist/bundle is loaded.
+         window.sipInstance = WebVoiceSdk.createSipInstance({
+          sipLogin: "Ваш SIP логин",
+          sipPassword: "cYCWrHUyXnC0",
+        });
+        window.sipInstance.register();
+      });    
+
+    </script>
+
+    <input
+    id="PhoneToCall"
+    placeholder="Введите номер"
+    />  
+
+    <input
+      value="Позвонить"
+      type="button"
+      id="startCallButton"
+      onclick="window.sipSession = window.sipInstance.call(document.getElementById('PhoneToCall').value)"
+    />
+
+    <input
+      value="Отбой вызова"
+      type="button"
+      id="stopCallButton"
+      onclick="window.sipSession.terminate()"
+    />
+
+  </body>
+</html>

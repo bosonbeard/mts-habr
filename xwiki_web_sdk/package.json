@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "webpack" 
+  },
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@mts-exolve/web-voice-sdk": "^1.9.0"
+  },
+  "browser": {
+    "@mts-exolve/web-voice-sdk": "@mts-exolve/web-voice-sdk/dist/web-voice-sdk.js"
+  }
+}
