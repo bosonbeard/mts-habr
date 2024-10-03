@@ -10,8 +10,5 @@
   },
   "dependencies": {
     "@mts-exolve/web-voice-sdk": "^1.9.0"
-  },
-  "browser": {
-    "@mts-exolve/web-voice-sdk": "@mts-exolve/web-voice-sdk/dist/web-voice-sdk.js"
   }
 }
