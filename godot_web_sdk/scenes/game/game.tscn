@@ -1,0 +1,174 @@
+[gd_scene load_steps=7 format=3 uid="uid://diulh2x7n2rn0"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_0k7ny"]
+[ext_resource type="Theme" uid="uid://datu070eh8g7h" path="res://themes/font_18.tres" id="2_0a37x"]
+[ext_resource type="Texture2D" uid="uid://bkfdipd4703el" path="res://assets/background.png" id="2_20eqk"]
+[ext_resource type="PackedScene" uid="uid://d4clvl0p4oadu" path="res://scenes/number/number.tscn" id="2_s1lrf"]
+[ext_resource type="PackedScene" uid="uid://doxujhj0lq5ln" path="res://scenes/number_pannel/number_pannel.tscn" id="3_m4k54"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vesch"]
+font_size = 18
+font_color = Color(0.862745, 0.862745, 0.862745, 1)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0k7ny")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_20eqk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderTable" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+columns = 3
+
+[node name="HeaderMargin1" type="MarginContainer" parent="VBoxContainer/HeaderTable"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/HeaderTable/HeaderMargin1"]
+layout_mode = 2
+text = "Переместите плитки с числами  в 
+соотвествующие позиции номера телефона"
+label_settings = SubResource("LabelSettings_vesch")
+
+[node name="Container" type="MarginContainer" parent="VBoxContainer/HeaderTable"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderMargin2" type="MarginContainer" parent="VBoxContainer/HeaderTable"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer/HeaderTable/HeaderMargin2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_0a37x")
+text = "Начать заново"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Number1" parent="VBoxContainer/HBoxContainer2/MarginContainer" groups=["Numbers"] instance=ExtResource("2_s1lrf")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Number2" parent="VBoxContainer/HBoxContainer2/MarginContainer2" groups=["Numbers"] instance=ExtResource("2_s1lrf")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Number3" parent="VBoxContainer/HBoxContainer2/MarginContainer3" groups=["Numbers"] instance=ExtResource("2_s1lrf")]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Number4" parent="VBoxContainer/HBoxContainer2/MarginContainer4" groups=["Numbers"] instance=ExtResource("2_s1lrf")]
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Number5" parent="VBoxContainer/HBoxContainer2/MarginContainer5" groups=["Numbers"] instance=ExtResource("2_s1lrf")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="СountryСodelabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "+7"
+
+[node name="NP1" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_m4k54")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NP2" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_m4k54")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NP3" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_m4k54")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NP4" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_m4k54")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NP5" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_m4k54")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CallButton" type="Button" parent="VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Позвонить"
+
+[connection signal="pressed" from="VBoxContainer/HeaderTable/HeaderMargin2/NewGameButton" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/CallButton" to="." method="_on_button_pressed"]
