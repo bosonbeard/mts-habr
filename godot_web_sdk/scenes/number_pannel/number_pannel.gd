@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 func _can_drop_data(at_position: Vector2, data: Variant):
 	
 	# color hint for drag and drop
-	if data.currentNumber == self.correct_number:
+	if data.current_number == self.correct_number:
 		data.drag_preview.change_color("#00FF00")
 		return true
 	else:
@@ -32,6 +32,6 @@ func _can_drop_data(at_position: Vector2, data: Variant):
 	
 func _drop_data(at_position: Vector2, data: Variant):
 	# change number in receiver container and delete dropped panel
-	change_current_number (data.currentNumber)
+	change_current_number (data.current_number)
 	data.queue_free()
 	Events.pannel_change_number.emit()
