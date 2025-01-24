@@ -1,0 +1,32 @@
+{
+  "components": [
+    {
+      "text": "Позвонить сборшику, решить вопрос в ручном режиме, нажать кнопку \"Решено\"",
+      "type": "text",
+      "layout": {
+        "row": "Row_15xqiih",
+        "columns": null
+      },
+      "id": "Field_1yk8r95"
+    },
+    {
+      "label": "Решено",
+      "action": "submit",
+      "type": "button",
+      "layout": {
+        "row": "Row_00sl6uu",
+        "columns": null
+      },
+      "id": "Field_0dzo5qr"
+    }
+  ],
+  "type": "default",
+  "id": "Form_problem",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.31.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "schemaVersion": 18
+}
