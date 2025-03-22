@@ -96,5 +96,5 @@ async def response_to_exolve(body: Any = Body(None)):
             jsonrpc="2.0",
             result=result_object
     )
-    logger.info(f'barriers {barrier_phones} opened for {user_phone}')
+    logger.info(f'barriers {barrier_phones} try to open for {user_phone}')
     return exolve_response_object
