@@ -14,7 +14,7 @@ LOGGING = {
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
-            'filename': './app.log',
+            'filename': 'app.log',
             'formatter': 'simple'
         },
     },
